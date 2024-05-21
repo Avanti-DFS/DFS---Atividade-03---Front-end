@@ -1,11 +1,15 @@
 
 import './App.css'
-
+import Header from './components/Header'
+import Home from './components/Home'
+import Footer from './components/Footer'
 function App() {
 
   return (
     <>
-      <h1 className="text-4xl font-bold text-red-600">Meu Projeto com Tailwind CSS</h1>
+      <Header></Header>
+      <Home></Home>
+      <Footer></Footer>
     </>
   )
 }
