@@ -3,6 +3,11 @@ import imagemIngresso from "../assets/ingresso.svg"
 import EventCard from './EventCard';
 
 const Home = () => {
+
+  
+  
+  
+
   return (
     <div className="min-h-screen bg-white-200 flex flex-col items-center justify-center">
       <div className="flex items-center justify-around w-full py-6">
