@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import '../App.css';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
@@ -45,7 +46,7 @@ function LoginForm() {
         />
       </div>
 
-      <button className="btn btn-primary" type="submit">Entrar</button>
+      <button className="btn" type="submit">Entrar</button>
 
     </form>
     </div>
