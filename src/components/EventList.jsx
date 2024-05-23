@@ -17,18 +17,22 @@ const EventList = () => {
         }
     }
 
+    function formatarData(data) {
+        const dataObj = new Date(data);
+        return dataObj.toLocaleDateString('pt-BR');
+    }
+
+
     useEffect(() => {
         getAllEventos();
     }, [])
-
-
 
     return (
         <div>
             <ul className="list-group">
                 {eventosRender.map(event => (
                     <li key={event.id} className="list-group-item flex justify-between items-center">
-                        <EventCard name={event.nome} date={event.data} />
+                        <EventCard name={event.nome} date={formatarData(event.data)} />
                     </li>
                 ))}
             </ul>
