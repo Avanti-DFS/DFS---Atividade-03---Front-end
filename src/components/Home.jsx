@@ -1,5 +1,7 @@
 import React from 'react';
 import imagemIngresso from "../assets/ingresso.svg"
+import EventCard from './EventCard';
+
 const Home = () => {
   return (
     <div className="min-h-screen bg-white-200 flex flex-col items-center justify-center">
@@ -14,6 +16,8 @@ const Home = () => {
       <p className="text-center text-2xl font-medium max-w-xl">
         Explore uma variedade de eventos emocionantes que vão desde shows incríveis até experiências culturais inesquecíveis. Encontre o ingresso perfeito para sua próxima aventura e mergulhe em momentos que irão inspirar, emocionar e encantar.
       </p>
+
+      <EventCard name="Conferência de Tecnologia" date="15 de junho de 2024" />
     </div>
   );
 };
