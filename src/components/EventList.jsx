@@ -28,16 +28,15 @@ const EventList = () => {
     }, [])
 
     return (
-        <div>
-            <ul className="list-group">
-                {eventosRender.map(event => (
-                    <li key={event.id} className="list-group-item flex justify-between items-center">
-                        <EventCard name={event.nome} date={formatarData(event.data)} />
-                    </li>
-                ))}
-            </ul>
+        <div className="grid grid-cols-2 gap-4">
+          {eventosRender.map(event => (
+            <div key={event.id} className="flex justify-center">
+              <EventCard name={event.nome} date={formatarData(event.data)} />
+            </div>
+          ))}
         </div>
-    )
+      );
+      
     }
 
 export default EventList
