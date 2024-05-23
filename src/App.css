@@ -4,13 +4,13 @@ body{
   align-items: center;
   height: 100vh;
   margin: 0;
-  background: linear-gradient(to bottom, #ffcc99, #ffffff);
+  background: linear-gradient(to bottom, #ffff89, #ffffff);
 }
 
 .container {
-  background-color: #ff9966;
+  background-color: #ffad27;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   text-align: center;
 }
 
@@ -30,19 +30,19 @@ input {
   padding: 10px;
   margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 input:focus{
   outline: none;
-  border-color: #d75413;
-  box-shadow: 0 0 5px #d75413;
+  border-color: #e88500;
+  box-shadow: 0 0 10px #e88500;
 }
 
 .btn {
   padding: 10px 20px;
-  background-color: #d75413;
-  color: white;
+  background-color: #e88500;
+  color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
