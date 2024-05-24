@@ -45,8 +45,6 @@ const EventList = () => {
     }
   };
 
-
-
   return (
     <>
       <div className="mb-3 ml-12 flex">
@@ -66,14 +64,15 @@ const EventList = () => {
           type="button"
           className="ml-4 py-2 px-4 bg-green-500 text-white font-medium rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
         >
-            <Link to="/criarevento">Adicionar Evento</Link>
-          
+          <Link to="/criarevento">Adicionar Evento</Link>
         </button>
       </div>
       <div className="grid grid-cols-2 gap-4">
         {eventosRender.map(event => (
           <div key={event.id} className="flex justify-center">
-            <EventCard name={event.nome} date={formatarData(event.data)} />
+            <Link to={`/evento/${event.id}`}>
+              <EventCard name={event.nome} date={formatarData(event.data)} />
+            </Link>
           </div>
         ))}
       </div>
