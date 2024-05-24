@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { getEventos } from '../services/EventService';
 import EventCard from './EventCard';
 import searchIcon from "../assets/search.svg";
-import EventModal from './EventModal'; // Importe o componente de modal
+import EventModal from './EventModal';
 import { Link } from 'react-router-dom';
 
 const EventList = ({ onEventClick }) => {
     const [eventos, setEventos] = useState([]);
     const [eventosRender, setEventosRender] = useState([]);
     const [search, setSearch] = useState("");
-    const [selectedEvent, setSelectedEvent] = useState(null); // Estado para armazenar o evento selecionado
-    const [modalOpen, setModalOpen] = useState(false); // Estado para controlar se o modal está aberto
+    const [selectedEvent, setSelectedEvent] = useState(null); 
+    const [modalOpen, setModalOpen] = useState(false); 
+
+    const token = localStorage.getItem('token');
 
     async function getAllEventos() {
         try {
-            const data = await getEventos();
+            const data = await getEventos(token);
             setEventos(data);
             setEventosRender(data);
         } catch (error) {
@@ -50,19 +52,26 @@ const EventList = ({ onEventClick }) => {
 
     const handleEventClick = (event) => {
         setSelectedEvent(event);
-        setModalOpen(true); // Abra o modal quando um evento for clicado
+        setModalOpen(true); 
     };
 
     const closeModal = () => {
-        setModalOpen(false); // Feche o modal
+        setModalOpen(false); 
     };
 
-    // Função para atualizar o estado dos eventos após a exclusão
     const updateEventList = (deletedEventId) => {
         const updatedEventos = eventos.filter(event => event.id !== deletedEventId);
         setEventos(updatedEventos);
         setEventosRender(updatedEventos);
     };
+
+    if (!token) {
+        return (
+            <div className="w-[100vw] h-full justify-center items-center flex flex-col px-10 py-8 mt-8">
+                <h1 className="text-3xl font-bold py-8 px-4 bg-[#f5ac3d] rounded">Faça login para ver os eventos</h1>
+            </div>
+        );
+    }
 
     return (
         <>

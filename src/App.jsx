@@ -9,6 +9,12 @@ import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import EventModal from './components/EventModal';
 import EventForm from './components/EventForm';
+import CategoriaForm from './components/CategoriaForm';
+import LocalForm from './components/LocalForm';
+import LocalList from './components/LocalList';
+import CategoriaList from './components/CategoriaList';
+import UserPage from './components/UserPage';
+import Sobre from './components/Sobre';
 
 
 function App() {
@@ -29,8 +35,16 @@ function App() {
           <Route path="/" element={<Home onEventClick={handleEventClick} />} />
           <Route path="/registrar" element={<RegisterForm />} />
           <Route path="/entrar" element={<LoginForm />} />
+          <Route path="/perfil" element={<UserPage />} />
           <Route path="/criarevento" element={<EventForm />} />
           <Route path="/criarevento/:id" element={<EventForm />} />
+          <Route path="/categorias" element={<CategoriaList />} />
+          <Route path="/criarcategoria" element={<CategoriaForm />} />
+          <Route path="/criarcategoria/:id" element={<CategoriaForm />} />
+          <Route path="/locais" element={<LocalList />} />
+          <Route path="/criarlocal" element={<LocalForm />} />
+          <Route path="/criarlocal/:id" element={<LocalForm />} />
+          <Route path="/sobre" element={<Sobre />} />
         </Routes>
       </div>
       <EventModal  isOpen={openEventModal} setEventModalOpen={() => setOpenEventModal(!openEventModal)} >

@@ -16,12 +16,6 @@ const Home = ({ onEventClick }) => {
       <p className="text-center text-2xl font-medium max-w-xl">
         Explore uma variedade de eventos emocionantes que vão desde shows incríveis até experiências culturais inesquecíveis. Encontre o ingresso perfeito para sua próxima aventura e mergulhe em momentos que irão inspirar, emocionar e encantar.
       </p>
-
-      <EventCard 
-        name="Conferência de Tecnologia" 
-        date="15 de junho de 2024" 
-        onClick={() => onEventClick({ name: "Conferência de Tecnologia", date: "15 de junho de 2024" })} 
-      />
     </div>
   );
 };

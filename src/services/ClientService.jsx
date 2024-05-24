@@ -4,7 +4,6 @@ import api from "./Api"
 export const createClient = async (data) => {
     try {
         const response = await api.post("/cliente", data);
-        console.log('response aqui ------' + response)
         return response.data;
     } catch (error) {
         console.log("Error save cliente")

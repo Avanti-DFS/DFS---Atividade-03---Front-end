@@ -18,6 +18,8 @@ const EventForm = () => {
     const [loadingCategorias, setLoadingCategorias] = useState(true);
     const [loadingLocais, setLoadingLocais] = useState(true);
 
+    const token = localStorage.getItem('token');
+
     function formatarData(dataLocal) {
         const data = new Date(dataLocal);
         const dataUTC3 = new Date(data.getTime() - (data.getTimezoneOffset() * 60000));
@@ -30,14 +32,14 @@ const EventForm = () => {
         async function setForm() {
             try {
                 if(id) {
-                    const evento = await getEventoById(id);
+                    const evento = await getEventoById(id, token);
                     setName(evento.nome);
                     let data = new Date(evento.data);
                     let dataFormatada = data.toISOString().slice(0,16);
                     setDate(dataFormatada);
                     setDescription(evento.descricao);
-                    const localData = await getLocalById(evento.local_id);
-                    const categoriaData = await getCategoriaById(evento.categoria_id);
+                    const localData = await getLocalById(evento.local_id, token);
+                    const categoriaData = await getCategoriaById(evento.categoria_id, token);
                     setCategorias([categoriaData]); // Certifique-se de que categoriaData seja um array de categorias
                     setLocais([localData]); // Certifique-se de que localData seja um array de locais
                 }
@@ -51,7 +53,7 @@ const EventForm = () => {
     useEffect(() => {
         async function getAllCategorias() {
             try {
-                const data = await getCategorias();
+                const data = await getCategorias(token);
                 setCategorias(data);
                 setLoadingCategorias(false);
             } catch (error) {
@@ -61,7 +63,7 @@ const EventForm = () => {
       
         async function getAllLocais() {
             try {
-                const data = await getLocais();
+                const data = await getLocais(token);
                 setLocais(data);
                 setLoadingLocais(false);
             } catch (error) {
@@ -81,12 +83,20 @@ const EventForm = () => {
 
         const data = {nome: name, data: selectedDate, descricao: description, categoria_id: selectedCategoria, local_id: selectedLocal};
         if(id){
-            await updateEvento(id, data);
+            await updateEvento(id, data, token);
         } else {
-            await createEvento(data);
+            await createEvento(data, token);
         }
         navigate("/eventos");   
     };
+
+    if (!token) {
+        return (
+            <div className="w-[100vw] h-full justify-center items-center flex flex-col px-10 py-8 mt-8">
+                <h1 className="text-3xl font-bold py-8 px-4 bg-red-400 rounded">Unauthorized</h1>
+            </div>
+        );
+    }
 
     return (
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

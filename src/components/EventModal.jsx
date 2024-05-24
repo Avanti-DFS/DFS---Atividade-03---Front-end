@@ -16,6 +16,8 @@ export default function EventModal({ isOpen, onClose, event, onDelete }) {
     const [categoria, setCategoria] = useState(null);
     const [loading, setLoading] = useState(false);
 
+    const token = localStorage.getItem('token');
+
     useEffect(() => {
         // Fetch local and categoria details when the event changes
         if (event) {
@@ -24,8 +26,8 @@ export default function EventModal({ isOpen, onClose, event, onDelete }) {
             // to fetch local and categoria details based on IDs
             const fetchDetails = async () => {
                 try {
-                  const localData = await getLocalById(event.local_id);
-                  const categoriaData = await getCategoriaById(event.categoria_id);
+                  const localData = await getLocalById(event.local_id, token);
+                  const categoriaData = await getCategoriaById(event.categoria_id, token);
                     setLocal(localData);
                     setCategoria(categoriaData);
                 } catch (error) {
@@ -38,9 +40,12 @@ export default function EventModal({ isOpen, onClose, event, onDelete }) {
         }
     }, [event]);
 
+
+    
+
     const deleteEvento = async (id) => {
         try {
-            await deleteEventoById(id);
+            await deleteEventoById(id, token);
             onDelete(id);
         } catch (error) {
             console.error("Error deleteEvento", error);
