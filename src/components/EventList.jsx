@@ -3,6 +3,7 @@ import { getEventos } from '../services/EventService';
 import EventCard from './EventCard';
 import searchIcon from "../assets/search.svg";
 import EventModal from './EventModal'; // Importe o componente de modal
+import { Link } from 'react-router-dom';
 
 const EventList = ({ onEventClick }) => {
     const [eventos, setEventos] = useState([]);
@@ -78,6 +79,11 @@ const EventList = ({ onEventClick }) => {
                         <img src={searchIcon} alt="Search" className="w-5 h-5" />
                     </span>
                 </div>
+                <button
+                  type="button"
+                  className="ml-4 py-2 px-4 bg-green-500 text-white font-medium rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                  <Link to="/criarevento">Adicionar Evento</Link>
+                </button>
             </div>
             <div className="grid grid-cols-2 gap-4">
                 {eventosRender.map(event => (

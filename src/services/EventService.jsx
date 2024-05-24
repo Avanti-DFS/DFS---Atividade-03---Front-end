@@ -31,7 +31,7 @@ export const deleteEventoById = async (id) => {
 
 export const updateEvento = async (id, data) => {
     try {
-        const response = await api.put(`/evento/${id}`, data);
+        const response = await api.put(`/eventos/${id}`, data);
         return response.data;
     } catch (error) {
         console.log("Error update evento")

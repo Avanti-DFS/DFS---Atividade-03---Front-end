@@ -8,6 +8,7 @@ import { Routes, Route } from 'react-router-dom';
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import EventModal from './components/EventModal';
+import EventForm from './components/EventForm';
 
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
           <Route path="/" element={<Home onEventClick={handleEventClick} />} />
           <Route path="/registrar" element={<RegisterForm />} />
           <Route path="/entrar" element={<LoginForm />} />
+          <Route path="/criarevento" element={<EventForm />} />
+          <Route path="/criarevento/:id" element={<EventForm />} />
         </Routes>
       </div>
       <EventModal  isOpen={openEventModal} setEventModalOpen={() => setOpenEventModal(!openEventModal)} >

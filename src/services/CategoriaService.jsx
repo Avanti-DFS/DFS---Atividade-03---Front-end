@@ -9,3 +9,12 @@ export const getCategorias = async () => {
         console.log("Error get categorias")
     }
 }
+
+export const getCategoriaById = async (id) => {
+    try {
+        const response = await api.get(`/categoria/${id}`);
+        return response.data;
+    } catch (error) {
+        console.log("Error get categoria by id")
+    }
+}
