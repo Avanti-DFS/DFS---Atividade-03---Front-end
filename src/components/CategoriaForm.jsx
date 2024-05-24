@@ -12,7 +12,7 @@ function CategoriaForm() {
             try {
                 if(id) {
                     const categoria = await getCategoriaById(id);
-                    setCategoria(categoria.name);
+                    setCategoria(categoria.categoria);
                 }
             } catch (error) {
                 console.log("Error")
