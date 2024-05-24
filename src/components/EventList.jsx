@@ -22,7 +22,7 @@ const EventList = ({ onEventClick }) => {
         const dataObj = new Date(data);
         return dataObj.toLocaleDateString('pt-BR');
     }
-
+  
     useEffect(() => {
         getAllEventos();
     }, []);
@@ -73,6 +73,7 @@ const EventList = ({ onEventClick }) => {
             </div>
         </>
     );
+
 }
 
 export default EventList;
