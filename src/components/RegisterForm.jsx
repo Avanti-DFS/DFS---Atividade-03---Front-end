@@ -9,6 +9,7 @@ function RegisterForm() {
     const [isAdmin, setIsAdmin] = useState(false);
     const { id } = useParams();
     const navigate = useNavigate();
+    
     useEffect(() => {
         async function setForm() {
             try {

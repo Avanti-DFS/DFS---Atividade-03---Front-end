@@ -7,6 +7,7 @@ import EventList from './components/EventList';
 import { Routes, Route } from 'react-router-dom';
 import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
+import EventForm from './components/EventForm';
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/registrar" element={<RegisterForm />} />
           <Route path="/entrar" element={<LoginForm />} />
+          <Route path="/criarevento" element={<EventForm />} />
         </Routes>
       </div>
       <Footer />

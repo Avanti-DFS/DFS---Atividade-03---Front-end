@@ -16,7 +16,7 @@ export const getClientById = async (id) => {
         const response = await api.get(`/client/${id}`);
         return response.data;
     } catch (error) {
-        console.log("Error get client by id")
+        console.log("Error get cliente by id")
     }
 }
 
@@ -25,6 +25,6 @@ export const updateClient = async (id, data) => {
         const response = await api.put(`/client/${id}`, data);
         return response.data;
     } catch (error) {
-        console.log("Error update client")
+        console.log("Error update cliente")
     }
 }

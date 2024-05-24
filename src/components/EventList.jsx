@@ -3,11 +3,12 @@ import { getEventos } from '../services/EventService';
 import EventCard from './EventCard';
 import searchIcon from "../assets/search.svg";
 
+
 const EventList = () => {
   const [eventos, setEventos] = useState([]);
   const [eventosRender, setEventosRender] = useState([]);
   const [search, setSearch] = useState("");
-
+  
   async function getAllEventos() {
     try {
       const data = await getEventos();
@@ -44,6 +45,8 @@ const EventList = () => {
     }
   };
 
+
+
   return (
     <>
       <div className="mb-3 ml-12 flex">
@@ -59,9 +62,9 @@ const EventList = () => {
             <img src={searchIcon} alt="Search" className="w-5 h-5" />
           </span>
         </div>
-        {/* Added green button for adding new events */}
         <button
           type="button"
+          onClick={""}
           className="ml-4 py-2 px-4 bg-green-500 text-white font-medium rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
         >
           Adicionar Evento

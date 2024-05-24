@@ -11,6 +11,7 @@ export const getEventos = async () => {
 }
 
 export const createEvento = async (data) => {
+    console.log(data)
     try {
         const response = await api.post("/evento", data);
         return response.data;
@@ -34,5 +35,14 @@ export const updateEvento = async (id, data) => {
         return response.data;
     } catch (error) {
         console.log("Error update evento")
+    }
+}
+
+export const getEventoById = async (id) => {
+    try {
+        const response = await api.get(`/evento/${id}`);
+        return response.data;
+    } catch (error) {
+        console.log("Error get cliente by id")
     }
 }
