@@ -22,7 +22,7 @@ export const createEvento = async (data) => {
 
 export const deleteEventoById = async (id) => {
     try {
-        const response = await api.delete(`/evento/${id}`);
+        const response = await api.delete(`/eventos/${id}`);
         return response.data;
     } catch (error) {
         console.log("Error delete evento")

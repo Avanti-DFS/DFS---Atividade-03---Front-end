@@ -37,7 +37,7 @@ const EventList = ({ onEventClick }) => {
             )
         );
         setEventosRender(filtered);
-    }, [search]);
+    }, [search, eventos]);
 
     const handleSearchChange = (e) => {
         const value = e.target.value;
@@ -54,6 +54,13 @@ const EventList = ({ onEventClick }) => {
 
     const closeModal = () => {
         setModalOpen(false); // Feche o modal
+    };
+
+    // Função para atualizar o estado dos eventos após a exclusão
+    const updateEventList = (deletedEventId) => {
+        const updatedEventos = eventos.filter(event => event.id !== deletedEventId);
+        setEventos(updatedEventos);
+        setEventosRender(updatedEventos);
     };
 
     return (
@@ -84,7 +91,7 @@ const EventList = ({ onEventClick }) => {
                 ))}
             </div>
             {/* Renderizar o modal apenas se estiver aberto */}
-            <EventModal isOpen={modalOpen} onClose={closeModal} event={selectedEvent} />
+            <EventModal isOpen={modalOpen} onClose={closeModal} event={selectedEvent} onDelete={updateEventList} />
         </>
     );
 
