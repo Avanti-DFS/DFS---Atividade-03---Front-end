@@ -33,6 +33,14 @@ function CategoriaForm() {
         }
         navigate("/");   
     };
+
+    if (!token) {
+      return (
+          <div className="w-[100vw] h-full justify-center items-center flex flex-col px-10 py-8 mt-8">
+              <h1 className="text-3xl font-bold py-8 px-4 bg-red-400 rounded">Unauthorized</h1>
+          </div>
+      );
+  }
   
     return (
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
