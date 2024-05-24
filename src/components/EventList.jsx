@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { getEventos } from '../services/EventService';
 import EventCard from './EventCard';
 import searchIcon from "../assets/search.svg";
+import EventModal from './EventModal'; // Importe o componente de modal
 
 const EventList = ({ onEventClick }) => {
     const [eventos, setEventos] = useState([]);
     const [eventosRender, setEventosRender] = useState([]);
     const [search, setSearch] = useState("");
+    const [selectedEvent, setSelectedEvent] = useState(null); // Estado para armazenar o evento selecionado
+    const [modalOpen, setModalOpen] = useState(false); // Estado para controlar se o modal está aberto
 
     async function getAllEventos() {
         try {
@@ -44,6 +47,15 @@ const EventList = ({ onEventClick }) => {
         }
     };
 
+    const handleEventClick = (event) => {
+        setSelectedEvent(event);
+        setModalOpen(true); // Abra o modal quando um evento for clicado
+    };
+
+    const closeModal = () => {
+        setModalOpen(false); // Feche o modal
+    };
+
     return (
         <>
             <div className="mb-3 ml-12 flex">
@@ -66,11 +78,13 @@ const EventList = ({ onEventClick }) => {
                         <EventCard 
                             name={event.nome} 
                             date={formatarData(event.data)} 
-                            onClick={() => onEventClick(event)} 
+                            onClick={() => handleEventClick(event)} 
                         />
                     </div>
                 ))}
             </div>
+            {/* Renderizar o modal apenas se estiver aberto */}
+            <EventModal isOpen={modalOpen} onClose={closeModal} event={selectedEvent} />
         </>
     );
 
