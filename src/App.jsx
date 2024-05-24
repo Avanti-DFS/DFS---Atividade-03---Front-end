@@ -9,6 +9,7 @@ import RegisterForm from './components/RegisterForm';
 import LoginForm from './components/LoginForm';
 import EventModal from './components/EventModal';
 import EventForm from './components/EventForm';
+import CategoriaForm from './components/CategoriaForm';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/entrar" element={<LoginForm />} />
           <Route path="/criarevento" element={<EventForm />} />
           <Route path="/criarevento/:id" element={<EventForm />} />
+          <Route path="/criarcategoria" element={<CategoriaForm />} />
         </Routes>
       </div>
       <EventModal  isOpen={openEventModal} setEventModalOpen={() => setOpenEventModal(!openEventModal)} >
