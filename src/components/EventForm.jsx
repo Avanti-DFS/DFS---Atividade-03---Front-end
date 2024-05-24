@@ -3,17 +3,20 @@ import { getCategorias } from '../services/CategoriaService';
 import { getLocais } from '../services/LocalService';
 import { useParams, useNavigate } from 'react-router-dom';
 import { createEvento, getEventoById, updateEvento } from '../services/EventService';
+import EventModal from './EventModal';
+import { getLocalById } from '../services/LocalService';
+import { getCategoriaById } from '../services/CategoriaService';
 
 const EventForm = () => {
     const [name, setName] = useState(''); 
     const [date, setDate] = useState(''); 
     const [description, setDescription] = useState('');
     const [categorias, setCategorias] = useState([]);
-    const [categoriasRender, setCategoriasRender] = useState([]);
     const [locais, setLocais] = useState([]);   
-    const [locaisRender, setLocaisRender] = useState([]);
     const { id } = useParams();
     const navigate = useNavigate();
+    const [loadingCategorias, setLoadingCategorias] = useState(true);
+    const [loadingLocais, setLoadingLocais] = useState(true);
 
     function formatarData(dataLocal) {
         const data = new Date(dataLocal);
@@ -21,7 +24,7 @@ const EventForm = () => {
         const dataFormatada = dataUTC3.toISOString().replace('Z', '-03:00');
       
         return dataFormatada;
-      }
+    }
 
     useEffect(() => {
         async function setForm() {
@@ -29,10 +32,14 @@ const EventForm = () => {
                 if(id) {
                     const evento = await getEventoById(id);
                     setName(evento.nome);
-                    setDate(evento.data);
+                    let data = new Date(evento.data);
+                    let dataFormatada = data.toISOString().slice(0,16);
+                    setDate(dataFormatada);
                     setDescription(evento.descricao);
-                    setCategorias(evento.categoria);
-                    setLocais(evento.local);
+                    const localData = await getLocalById(evento.local_id);
+                    const categoriaData = await getCategoriaById(evento.categoria_id);
+                    setCategorias([categoriaData]); // Certifique-se de que categoriaData seja um array de categorias
+                    setLocais([localData]); // Certifique-se de que localData seja um array de locais
                 }
             } catch (error) {
                 console.log("Error")
@@ -40,6 +47,31 @@ const EventForm = () => {
         }
         setForm();
     }, [id]);
+
+    useEffect(() => {
+        async function getAllCategorias() {
+            try {
+                const data = await getCategorias();
+                setCategorias(data);
+                setLoadingCategorias(false);
+            } catch (error) {
+                console.log("Error getCategorias: " + error);
+            }
+        }
+      
+        async function getAllLocais() {
+            try {
+                const data = await getLocais();
+                setLocais(data);
+                setLoadingLocais(false);
+            } catch (error) {
+                console.log("Error getLocais: " + error);
+            }
+        }
+
+        getAllCategorias();
+        getAllLocais();
+    }, []);
 
     const handle = async (e) => {
         e.preventDefault();
@@ -55,35 +87,6 @@ const EventForm = () => {
         }
         navigate("/eventos");   
     };
-
-    async function getAllCategorias() {
-        try {
-          const data = await getCategorias();
-          setCategorias(data);
-          setCategoriasRender(data);
-        } catch (error) {
-          console.log("Error getCategorias: " + error);
-        }
-      }
-
-      async function getAllLocais() {
-        try {
-          const data = await getLocais();
-          setLocais(data);
-          setLocaisRender(data);
-        } catch (error) {
-          console.log("Error getLocais: " + error);
-        }
-      }
-
-      useEffect(() => {
-        getAllCategorias();
-      }, []);
-
-      useEffect(() => {
-        getAllLocais();
-      }, []);
-
 
     return (
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -105,22 +108,30 @@ const EventForm = () => {
                             <label htmlFor="date" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Data</label>
                             <input type="datetime-local" name="date" id="date" value={date} onChange={e => setDate(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
                         </div>
-                        <label htmlFor="categoria" className="block text-sm font-medium text-gray-900 dark:text-white">
-                            Escolha uma Categoria
-                        </label>
-                        <select id="categoria" name="categoria" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            {categoriasRender.map(categoria => (
-                                <option key={categoria.id} value={categoria.id}>{categoria.categoria}</option>
-                            ))}
-                        </select>
-                        <label htmlFor="local" className="block text-sm font-medium text-gray-900 dark:text-white">
-                            Escolha um Local
-                        </label>
-                        <select id="local" name="local" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            {locaisRender.map(local => (
-                                <option key={local.id} value={local.id}>{local.nome}</option>
-                            ))}
-                        </select>
+                        {!loadingCategorias && (
+                            <div>
+                                <label htmlFor="categoria" className="block text-sm font-medium text-gray-900 dark:text-white">
+                                    Escolha uma Categoria
+                                </label>
+                                <select id="categoria" name="categoria" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    {categorias.map(categoria => (
+                                        <option key={categoria.id} value={categoria.id}>{categoria.categoria}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        )}
+                        {!loadingLocais && (
+                            <div>
+                                <label htmlFor="local" className="block text-sm font-medium text-gray-900 dark:text-white">
+                                    Escolha um Local
+                                </label>
+                                <select id="local" name="local" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    {locais.map(local => (
+                                        <option key={local.id} value={local.id}>{local.nome}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        )}
                         <div className="flex items-start">
                         </div>  
                         <button type="submit" className="w-full text-black bg-[#f5ac3d] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Criar Evento</button>

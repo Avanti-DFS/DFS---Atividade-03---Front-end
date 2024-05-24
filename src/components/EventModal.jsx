@@ -26,7 +26,6 @@ export default function EventModal({ isOpen, onClose, event, onDelete }) {
                 try {
                   const localData = await getLocalById(event.local_id);
                   const categoriaData = await getCategoriaById(event.categoria_id);
-                    console.log("local: " + localData.nome)
                     setLocal(localData);
                     setCategoria(categoriaData);
                 } catch (error) {
@@ -50,8 +49,6 @@ export default function EventModal({ isOpen, onClose, event, onDelete }) {
     }
 
     if(isOpen && event) {
-      console.log(categoria)
-      console.log(local)
         return (
             <div className="fixed top-0 bottom-0 left-0 right-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
                 <div className="bg-white rounded-lg p-20 relative w-3/4 h-auto flex flex-col">
