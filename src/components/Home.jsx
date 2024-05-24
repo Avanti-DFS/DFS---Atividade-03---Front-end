@@ -1,10 +1,13 @@
 import React from 'react';
 import imagemIngresso from "../assets/ingresso.svg";
 import EventCard from './EventCard';
+import HeadHelper from '../helper/HeadHelper';
 
 const Home = ({ onEventClick }) => {
   return (
+    
     <div className="min-h-screen bg-white-200 flex flex-col items-center justify-center">
+      <HeadHelper title="Home" />
       <div className="flex items-center justify-around w-full py-6">
         <div className='max-w-[34rem] relative'>
           <img src={imagemIngresso} alt="" style={{ width: '100%', height: '100%' }} />

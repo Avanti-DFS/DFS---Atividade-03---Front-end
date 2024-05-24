@@ -40,8 +40,8 @@ const EventForm = () => {
                     setDescription(evento.descricao);
                     const localData = await getLocalById(evento.local_id, token);
                     const categoriaData = await getCategoriaById(evento.categoria_id, token);
-                    setCategorias([categoriaData]); // Certifique-se de que categoriaData seja um array de categorias
-                    setLocais([localData]); // Certifique-se de que localData seja um array de locais
+                    setCategorias([categoriaData]); 
+                    setLocais([localData]); 
                 }
             } catch (error) {
                 console.log("Error")

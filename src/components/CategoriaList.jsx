@@ -1,6 +1,7 @@
 import {React, useEffect, useState} from 'react'
 import { getCategorias, deleteCategoriaById } from '../services/CategoriaService';
 import { Link } from 'react-router-dom';
+import HeadHelper from '../helper/HeadHelper';
 
 const CategoriaList = () => {
     const [categorias, setCategorias] = useState([]);
@@ -33,6 +34,7 @@ const CategoriaList = () => {
       if (!token) {
         return (
             <div className="w-[100vw] h-full justify-center items-center flex flex-col px-10 py-8 mt-8">
+              <HeadHelper title="Categorias" />
                 <h1 className="text-3xl font-bold py-8 px-4 bg-red-400 rounded">Unauthorized</h1>
             </div>
         );
@@ -40,6 +42,7 @@ const CategoriaList = () => {
 
     return (
         <>
+        <HeadHelper title="Categorias" />
           <div className="w-[100vw] h-full justify-center items-center flex flex-col px-10 py-8 mt-8">
             <h1 className="text-3xl font-bold py-8 px-4 bg-orange-400 rounded">CATEGORIAS</h1>
             <div className="flex flex-col">
@@ -98,6 +101,8 @@ const CategoriaList = () => {
                 </div>
               </div>
             </div>
+            <button className="w-60 text-black bg-[#f5ac3d] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"><Link to="/criarcategoria">Cadastrar uma Categoria</Link></button>
+
           </div>
         </>
       );

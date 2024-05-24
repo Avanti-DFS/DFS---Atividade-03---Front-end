@@ -1,8 +1,10 @@
 import React from 'react'
+import HeadHelper from '../helper/HeadHelper';
 
 const Sobre = () => {
     return (
         <div className="bg-white text-primary min-h-screen flex justify-center items-center">
+          <HeadHelper title="Sobre" />
           <div className="max-w-md p-8 rounded shadow-md">
             <h1 className="text-3xl font-bold mb-4">Sobre o nosso site de ingressos de eventos</h1>
             <p className="text-lg mb-4">

@@ -4,6 +4,7 @@ import EventCard from './EventCard';
 import searchIcon from "../assets/search.svg";
 import EventModal from './EventModal';
 import { Link } from 'react-router-dom';
+import HeadHelper from '../helper/HeadHelper';
 
 const EventList = ({ onEventClick }) => {
     const [eventos, setEventos] = useState([]);
@@ -68,6 +69,7 @@ const EventList = ({ onEventClick }) => {
     if (!token) {
         return (
             <div className="w-[100vw] h-full justify-center items-center flex flex-col px-10 py-8 mt-8">
+                <HeadHelper title="Eventos" />
                 <h1 className="text-3xl font-bold py-8 px-4 bg-[#f5ac3d] rounded">Faça login para ver os eventos</h1>
             </div>
         );
@@ -75,6 +77,7 @@ const EventList = ({ onEventClick }) => {
 
     return (
         <>
+            <HeadHelper title="Eventos" />
             <div className="mb-3 ml-12 flex">
                 <div style={{ width: '250px' }} className="relative flex">
                     <input
@@ -105,7 +108,6 @@ const EventList = ({ onEventClick }) => {
                     </div>
                 ))}
             </div>
-            {/* Renderizar o modal apenas se estiver aberto */}
             <EventModal isOpen={modalOpen} onClose={closeModal} event={selectedEvent} onDelete={updateEventList} />
         </>
     );

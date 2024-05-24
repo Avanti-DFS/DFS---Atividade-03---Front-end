@@ -19,11 +19,8 @@ export default function EventModal({ isOpen, onClose, event, onDelete }) {
     const token = localStorage.getItem('token');
 
     useEffect(() => {
-        // Fetch local and categoria details when the event changes
         if (event) {
-            setLoading(true); // Set loading state to true when fetching details
-            // Assume you have methods getLocalById and getCategoriaById
-            // to fetch local and categoria details based on IDs
+            setLoading(true);
             const fetchDetails = async () => {
                 try {
                   const localData = await getLocalById(event.local_id, token);
@@ -33,7 +30,7 @@ export default function EventModal({ isOpen, onClose, event, onDelete }) {
                 } catch (error) {
                     console.error("Error fetching details", error);
                 } finally {
-                    setLoading(false); // Set loading state to false when fetching is done
+                    setLoading(false);
                 }
             };
             fetchDetails();
