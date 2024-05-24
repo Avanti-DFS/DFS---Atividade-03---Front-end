@@ -1,13 +1,29 @@
-
-import './App.css'
-
+// App.js
+import React from 'react';
+import Header from './components/Header';
+import Home from './components/Home';
+import Footer from './components/Footer';
+import EventList from './components/EventList';
+import { Routes, Route } from 'react-router-dom';
+import RegisterForm from './components/RegisterForm';
+import LoginForm from './components/LoginForm';
+import EventForm from './components/EventForm';
 function App() {
-
   return (
-    <>
-      <h1 className="text-4xl font-bold text-red-600">Meu Projeto com Tailwind CSS</h1>
-    </>
-  )
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <div className="flex-grow">
+        <Routes>
+          <Route path="eventos" element={<EventList />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/registrar" element={<RegisterForm />} />
+          <Route path="/entrar" element={<LoginForm />} />
+          <Route path="/criarevento" element={<EventForm />} />
+        </Routes>
+      </div>
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
