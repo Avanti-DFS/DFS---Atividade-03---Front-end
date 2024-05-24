@@ -6,12 +6,13 @@ function CategoriaForm() {
     const [categoria, setCategoria] = useState('');
     const { id } = useParams();
     const navigate = useNavigate();
-    
+    const token = localStorage.getItem('token');
+
     useEffect(() => {
         async function setForm() {
             try {
                 if(id) {
-                    const categoria = await getCategoriaById(id);
+                    const categoria = await getCategoriaById(id, token);
                     setCategoria(categoria.categoria);
                 }
             } catch (error) {
@@ -26,9 +27,9 @@ function CategoriaForm() {
         e.preventDefault();
         const data = {categoria};
         if(id){
-            await updateCategoria(id, data);
+            await updateCategoria(id, data, token);
         } else {
-            await createCategoria(data);
+            await createCategoria(data, token);
         }
         navigate("/");   
     };
@@ -59,4 +60,4 @@ function CategoriaForm() {
       );
   }
 
-export default CategoriaForm
+export default CategoriaForm;

@@ -12,9 +12,11 @@ const EventList = ({ onEventClick }) => {
     const [selectedEvent, setSelectedEvent] = useState(null); 
     const [modalOpen, setModalOpen] = useState(false); 
 
+    const token = localStorage.getItem('token');
+
     async function getAllEventos() {
         try {
-            const data = await getEventos();
+            const data = await getEventos(token);
             setEventos(data);
             setEventosRender(data);
         } catch (error) {

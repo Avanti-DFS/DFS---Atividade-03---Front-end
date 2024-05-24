@@ -7,12 +7,13 @@ function LocalForm() {
     const [endereco, setEndereco] = useState('');
     const { id } = useParams();
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
     
     useEffect(() => {
         async function setForm() {
             try {
                 if(id) {
-                    const local = await getLocalById(id);
+                    const local = await getLocalById(id, token);
                     setNome(local.nome);
                     setEndereco(local.endereco)
                 }
@@ -28,9 +29,9 @@ function LocalForm() {
         e.preventDefault();
         const data = {nome, endereco};
         if(id){
-            await updateLocal(id, data);
+            await updateLocal(id, data, token);
         } else {
-            await createLocal(data);
+            await createLocal(data, token);
         }
         navigate("/");   
     };

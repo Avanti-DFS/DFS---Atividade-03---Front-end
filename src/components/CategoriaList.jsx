@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 const CategoriaList = () => {
     const [categorias, setCategorias] = useState([]);
     const [categoriasRender, setCategoriasRender] = useState([]);
+    const token = localStorage.getItem('token');
 
     async function getAllCategorias() {
         try {
-            const data = await getCategorias();
+            const data = await getCategorias(token);
             setCategorias(data);
             setCategoriasRender(data);
         } catch (error) {
@@ -22,7 +23,7 @@ const CategoriaList = () => {
 
     const deleteCategoria = async (id) => {
         try {
-            await deleteCategoriaById(id);
+            await deleteCategoriaById(id, token);
             getAllCategorias();
         } catch {
             console.error("Error deleteClient")

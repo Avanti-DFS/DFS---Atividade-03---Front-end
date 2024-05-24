@@ -13,6 +13,7 @@ import CategoriaForm from './components/CategoriaForm';
 import LocalForm from './components/LocalForm';
 import LocalList from './components/LocalList';
 import CategoriaList from './components/CategoriaList';
+import UserPage from './components/UserPage';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/" element={<Home onEventClick={handleEventClick} />} />
           <Route path="/registrar" element={<RegisterForm />} />
           <Route path="/entrar" element={<LoginForm />} />
+          <Route path="/perfil" element={<UserPage />} />
           <Route path="/criarevento" element={<EventForm />} />
           <Route path="/criarevento/:id" element={<EventForm />} />
           <Route path="/categorias" element={<CategoriaList />} />
