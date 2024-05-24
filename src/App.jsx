@@ -10,6 +10,7 @@ import LoginForm from './components/LoginForm';
 import EventModal from './components/EventModal';
 import EventForm from './components/EventForm';
 import CategoriaForm from './components/CategoriaForm';
+import LocalForm from './components/LocalForm';
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="/criarevento" element={<EventForm />} />
           <Route path="/criarevento/:id" element={<EventForm />} />
           <Route path="/criarcategoria" element={<CategoriaForm />} />
+          <Route path="/criarlocal" element={<LocalForm />} />
         </Routes>
       </div>
       <EventModal  isOpen={openEventModal} setEventModalOpen={() => setOpenEventModal(!openEventModal)} >
