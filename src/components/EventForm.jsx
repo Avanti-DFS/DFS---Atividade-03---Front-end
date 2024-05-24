@@ -15,14 +15,9 @@ const EventForm = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    function formatarDataLocalParaUTC3(dataLocal) {
-        // Obter data e hora local do campo datetime-local
+    function formatarData(dataLocal) {
         const data = new Date(dataLocal);
-      
-        // Converter para UTC-3
         const dataUTC3 = new Date(data.getTime() - (data.getTimezoneOffset() * 60000));
-      
-        // Formatar no formato ISO-8601 com fuso horário UTC-3
         const dataFormatada = dataUTC3.toISOString().replace('Z', '-03:00');
       
         return dataFormatada;
@@ -50,7 +45,7 @@ const EventForm = () => {
         e.preventDefault();
         const selectedCategoria = e.target.elements.categoria.value;
         const selectedLocal = e.target.elements.local.value;
-        const selectedDate = formatarDataLocalParaUTC3(date);
+        const selectedDate = formatarData(date);
 
         const data = {nome: name, data: selectedDate, descricao: description, categoria_id: selectedCategoria, local_id: selectedLocal};
         if(id){
