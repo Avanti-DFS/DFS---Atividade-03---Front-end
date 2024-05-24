@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { getEventos } from '../services/EventService';
 import EventCard from './EventCard';
 import searchIcon from "../assets/search.svg";
-
+import { Link } from 'react-router-dom';
 
 const EventList = () => {
   const [eventos, setEventos] = useState([]);
   const [eventosRender, setEventosRender] = useState([]);
   const [search, setSearch] = useState("");
-  
+
   async function getAllEventos() {
     try {
       const data = await getEventos();
@@ -64,10 +64,10 @@ const EventList = () => {
         </div>
         <button
           type="button"
-          onClick={""}
           className="ml-4 py-2 px-4 bg-green-500 text-white font-medium rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
         >
-          Adicionar Evento
+            <Link to="/criarevento">Adicionar Evento</Link>
+          
         </button>
       </div>
       <div className="grid grid-cols-2 gap-4">
