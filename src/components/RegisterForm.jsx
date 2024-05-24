@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate  } from 'react-router-dom';
+import { useParams, useNavigate, Link  } from 'react-router-dom';
 import { createClient, getClientById, updateClient } from "../services/ClientService";
 
 function RegisterForm() {
@@ -66,10 +66,10 @@ function RegisterForm() {
           <div className="flex items-start">
           </div>
           <button type="submit" className="w-full text-black bg-[#f5ac3d] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Cria uma conta</button>
-          <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-            Already have an account? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
-          </p>
         </form>
+        <div className="mt-4 text-gray-600 text-sm text-center">
+                        Já tem uma conta? <Link to="/entrar" className="text-primary-600 hover:underline text-[#4f3df5] ">Faça login aqui</Link>.
+                    </div>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login, getUserName } from '../services/LoginService';
 
 function LoginForm() {
@@ -47,6 +47,9 @@ function LoginForm() {
                         </div>
                         <button type="submit" className="w-full text-black bg-[#f5ac3d] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Entrar</button>
                     </form>
+                    <div className="mt-4 text-gray-600 text-sm text-center">
+                        Não tem uma conta? <Link to="/registrar" className="text-primary-600 hover:underline text-[#4f3df5] ">Registre-se aqui</Link>.
+                    </div>
                 </div>
             </div>
         </div>
