@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from "../assets/logo.svg"
 import { Link } from "react-router-dom";
-import { getUserName } from '../services/LoginService';
 const Navbar = () => {
 
   const userString = localStorage.getItem('user')
