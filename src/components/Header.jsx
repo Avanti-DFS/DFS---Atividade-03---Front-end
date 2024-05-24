@@ -20,7 +20,8 @@ const Navbar = () => {
         <ul className='flex space-x-4'>
           <li><Link to="/" className='font-medium'>Home</Link></li>
           <li><Link to="/eventos" className='font-medium'>Eventos</Link></li>
-          <li className='font-medium'>Sobre</li>
+          <li className='font-medium'>
+            <Link to="/sobre">Sobre</Link></li>
           {userName ? (
             <li><Link to="/perfil" className='bg-[#f5ac3d] rounded-md font-medium px-6 py-3'>{JSON.parse(userName)}</Link></li>
           ) : (

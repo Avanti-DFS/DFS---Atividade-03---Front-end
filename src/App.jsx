@@ -14,6 +14,7 @@ import LocalForm from './components/LocalForm';
 import LocalList from './components/LocalList';
 import CategoriaList from './components/CategoriaList';
 import UserPage from './components/UserPage';
+import Sobre from './components/Sobre';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
           <Route path="/locais" element={<LocalList />} />
           <Route path="/criarlocal" element={<LocalForm />} />
           <Route path="/criarlocal/:id" element={<LocalForm />} />
+          <Route path="/sobre" element={<Sobre />} />
         </Routes>
       </div>
       <EventModal  isOpen={openEventModal} setEventModalOpen={() => setOpenEventModal(!openEventModal)} >

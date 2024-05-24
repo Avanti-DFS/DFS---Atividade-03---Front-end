@@ -17,7 +17,11 @@ const UserPage = () => {
       );
   }
   
-    return <button onClick={handleLogout} className="bg-[#f5523d] hover:bg-gray-500 rounded-md font-medium px-6 py-3 mb-4 md:mb-0 md:mr-4">Logout</button>;
+  return (
+    <div className="flex justify-center items-center h-screen">
+        <button onClick={handleLogout} className="bg-[#f5523d] hover:bg-gray-500 rounded-md font-medium px-6 py-3">Logout</button>
+    </div>
+);
 }
 
 export default UserPage
