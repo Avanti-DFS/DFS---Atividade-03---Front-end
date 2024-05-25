@@ -7,7 +7,7 @@ const Footer = () => {
         <div className=' container max-w-[1240px] mx-auto py-6 px-4 grid lg:grid-cols-2 gap-8'>
             <div>
                 <h1 className='w-full text-3xl font-bold'><img src={logo_branco} alt="Logo" className='h-10' /></h1>
-                <p className='py-4 max-w-[300px] break-all '>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id odit ullam iste repellat consequatur libero reiciendis, blanditiis accusantium.</p>
+                <p className='py-4 max-w-[300px] break-all '>Bem vindo ao nosso site Procurando um  <br />Evento? sua plataforma definitiva para a compra de ingressos nos melhores eventos da cidade!</p>
             </div>
             <div className='flex justify-end md:w-[75%] my-6'>
                 <ul>
