@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login, getUserName } from '../services/LoginService';
+import HeadHelper from '../helper/HeadHelper';
 
 function LoginForm() {
     const [email, setEmail] = useState('');
@@ -13,22 +14,21 @@ function LoginForm() {
         const data = { email, password };
 
         try {
-            const response = await login(data); // Call login function from service
+            const response = await login(data); 
             if (response.success) {
-               // Check for successful login in response
               getUserName();
-              navigate("/"); // Redirect to home on successful login
+              navigate("/");
             } else {
-                console.error("Login failed:", response.message); // Handle failed login with error message
-                // You can display an error message to the user here
+                console.error("Login failed:", response.message); 
             }
         } catch (error) {
-            console.error("Error during login:", error); // Handle errors during login process
+            console.error("Error during login:", error); 
         }
     };
 
     return (
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <HeadHelper title="Login" />
             <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -47,6 +47,9 @@ function LoginForm() {
                         </div>
                         <button type="submit" className="w-full text-black bg-[#f5ac3d] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Entrar</button>
                     </form>
+                    <div className="mt-4 text-gray-600 text-sm text-center">
+                        Não tem uma conta? <Link to="/registrar" className="text-primary-600 hover:underline text-[#4f3df5] ">Registre-se aqui</Link>.
+                    </div>
                 </div>
             </div>
         </div>

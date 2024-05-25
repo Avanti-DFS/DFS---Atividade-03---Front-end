@@ -53,7 +53,6 @@ function App() {
             <h5 className="text-start mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{selectedEvent.name}</h5>
             <p className="text-start mb-3 font-normal text-gray-700 dark:text-gray-400">{selectedEvent.date}</p>
             <img className="object-cover w-full rounded-lg h-120 md:h-auto md:w-72 md:rounded-none md:rounded-l-lg" src="src\assets\nainoa-shizuru-NcdG9mK3PBY-unsplash.jpg" alt="" />
-             {/* Adicione mais detalhes do evento conforme necessário */}
           </div>
          )}
        </EventModal>
